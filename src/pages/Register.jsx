@@ -57,7 +57,8 @@ const Register = () => {
                 })
                 setTimeout(() => {
                     navigate(location?.state ? location.state : '/')
-                }, 1000);
+                    window.location.reload();
+                }, 2000);
 
             })
             .catch(error => {

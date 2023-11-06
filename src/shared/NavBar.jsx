@@ -34,7 +34,8 @@ const NavBar = () => {
             All Jobs
         </NavLink>
         </li>
-        <li className="mx-2"><NavLink
+        {
+            user&& <li className="mx-2"><NavLink
             to="/addJob"
             style={({ isActive, isPending, isTransitioning }) => {
                 return {
@@ -47,7 +48,9 @@ const NavBar = () => {
             Add a Job
         </NavLink>
         </li>
-        <li className="mx-2"><NavLink
+        }
+        {
+            user&& <li className="mx-2"><NavLink
             to="/appliedJob"
             style={({ isActive, isPending, isTransitioning }) => {
                 return {
@@ -60,19 +63,22 @@ const NavBar = () => {
             Applied Jobs
         </NavLink>
         </li>
-        <li className="mx-2"><NavLink
-            to="/myJob"
-            style={({ isActive, isPending, isTransitioning }) => {
-                return {
-                    fontWeight: isActive ? "bold" : "",
-                    color: isPending ? "red" : "",
-                    viewTransitionName: isTransitioning ? "slide" : "",
-                };
-            }}
-        >
-            My Job
-        </NavLink>
-        </li>
+        }
+       {
+        user &&  <li className="mx-2"><NavLink
+        to="/myJob"
+        style={({ isActive, isPending, isTransitioning }) => {
+            return {
+                fontWeight: isActive ? "bold" : "",
+                color: isPending ? "red" : "",
+                viewTransitionName: isTransitioning ? "slide" : "",
+            };
+        }}
+    >
+        My Job
+    </NavLink>
+    </li>
+       }
 
     </>
     return (
