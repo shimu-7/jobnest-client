@@ -1,9 +1,70 @@
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../providers/AuthProvider";
+import { updateProfile } from "firebase/auth";
+import Swal from "sweetalert2";
 
 
 const Register = () => {
-    const handleRegister = e =>{
+
+    const [regError, setRegError] = useState(null);
+    const { createUser } = useContext(AuthContext);
+
+    const location = useLocation();
+    const navigate = useNavigate();
+
+
+    const handleRegister = e => {
         e.preventDefault();
+        const name = e.target.name.value;
+        const photo = e.target.photo.value;
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        console.log(name, photo, email, password);
+        setRegError(null);
+
+        if (password.length < 6) {
+            setRegError('password should be at least 6 characters or more')
+            return;
+        }
+        else if (!/[!@#$%^&*]/.test(password)) {
+            setRegError(' Password should contain at least one  special character')
+            return
+        }
+        else if (!/[A-Z]/.test(password)) {
+            setRegError('Password should contain Capital letter')
+            return
+        }
+
+
+        createUser(email, password, name, photo)
+            .then(result => {
+                console.log(result.user);
+
+                updateProfile(result.user, {
+                    displayName: name, photoURL: photo
+                })
+                    .then()
+                    .catch()
+
+                Swal.fire({
+                    icon: 'success',
+                    imageUrl: photo,
+                    imageWidth: 100,
+                    imageHeight: 100,
+                    title:name,
+                    text: 'Successfully Registered ',
+                })
+                setTimeout(() => {
+                    navigate(location?.state ? location.state : '/')
+                }, 1000);
+
+            })
+            .catch(error => {
+                console.log(error.message);
+                setRegError(error.message);
+            })
+
     }
     return (
         <div>
@@ -47,7 +108,10 @@ const Register = () => {
                             </div>
                             <p>Already have an account!!! Please <Link to="/login" className="text-red-700 font-medium">Login</Link></p>
                         </form>
-                       
+                        {
+                            regError && <p className="text-red-500 pl-2 pb-2">{regError}</p>
+                        }
+
                     </div>
 
                 </div>

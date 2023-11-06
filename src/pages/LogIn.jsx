@@ -1,20 +1,70 @@
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 
 const LogIn = () => {
+
+    const [logError, setLogError] = useState(null)
+
+    const { googleSignIn, logIn } = useContext(AuthContext);
+
+    const location = useLocation();
+    const navigate = useNavigate();
+
+
     const handleLogin = e => {
         e.preventDefault();
         const email = e.target.email.value;
         const pass = e.target.password.value;
         console.log(email, pass);
+        setLogError(null)
+
+        logIn(email, pass)
+            .then(result => {
+                console.log(result.user);
+                Swal.fire({
+                    
+                    icon: 'success',
+                    imageUrl: result.user.photoURL,
+                    imageWidth: 100,
+                    imageHeight: 100,
+                    title: result.user.displayName,
+                    text: 'logged in successfully',
+
+                })
+                setTimeout(() => {
+                    navigate(location?.state ? location.state : '/')
+                }, 1000);
+            })
+            .catch(error => {
+                setLogError(error.message);
+            })
     }
 
-    const handleGoogleLogIn = e => {
-        e.preventDefault();
+    const handleGoogleLogIn = () => {
+        googleSignIn()
+            .then(result => {
+                console.log(result.user);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Great',
+                    text: 'User Logged in successfully',
+
+                })
+                setTimeout(() => {
+                    navigate(location?.state ? location.state : '/')
+                }, 1000);
+
+            })
+            .catch(error => {
+                setLogError(error.message);
+            })
     }
     return (
         <div>
-           
+
 
             <div className="hero min-h-screen ">
 
@@ -48,8 +98,9 @@ const LogIn = () => {
                             <p>Don't have an Account?<Link to="/register" className="text-red-700 font-medium">Register</Link>  </p>
 
                         </form>
-                        
-
+                        {
+                            logError && <p className="text-red-500 pl-2 pb-2">{logError}</p>
+                        }
                     </div>
                 </div>
             </div>

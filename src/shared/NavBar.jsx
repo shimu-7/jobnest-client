@@ -1,8 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
+import { useContext } from "react";
+import { AuthContext } from "../providers/AuthProvider";
 
 
 const NavBar = () => {
+    const { user, logOut } = useContext(AuthContext)
+    console.log(user);
     const links = <>
         <li className="mx-2"><NavLink
             to="/"
@@ -97,11 +101,23 @@ const NavBar = () => {
                 </div>
                 <div className="navbar-end">
                     <div className="mr-[2px]">
-                        <CgProfile className="text-3xl"></CgProfile>
+                        {
+                            user?.displayName ? <p className="font-medium">{user.displayName}</p> : " "
+                        }
                     </div>
-                    <Link to="/login">
-                        <button className="btn btn-outline btn-primary">LogIn</button>
-                    </Link>
+                    <div className="w-10 rounded-full mr-[2px]">
+                        {
+                            user?.photoURL ? <img className="h-10 w-10 rounded-full" src={`${user.photoURL}`} referrerPolicy="no-referrer" ></img> : <CgProfile className="text-3xl"></CgProfile>
+                        }
+                    </div>
+                    {
+                        user ? 
+                        <Link to="/"><button onClick={logOut} className="btn btn-outline btn-primary">Logout</button></Link> 
+                        :
+                            <Link to="/login">
+                                <button className="btn btn-outline btn-primary">LogIn</button>
+                            </Link>
+                    }
                 </div>
             </div>
         </div>
