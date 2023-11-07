@@ -1,18 +1,67 @@
+import { useContext } from "react";
 import NavBar from "../shared/NavBar";
 import UserProfileNavbar from "../shared/UserProfileNavbar";
+import { AuthContext } from "../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 
 
 const AddJob = () => {
-    const handleAddJob = e =>{
-        e.preventDefault()
+    const { user } = useContext(AuthContext)
+    const handleAddJob = e => {
+        e.preventDefault();
+        const title = e.target.jTitle.value;
+        const category = e.target.jCategory.value;
+        const photo = e.target.photo.value;
+        const description = e.target.description.value;
+        const salary = e.target.salary.value;
+        const deadline = e.target.deadline.value;
+        const applicants = e.target.applicants.value;
+        const poster= user.displayName;
+
+        const newJob = {poster, title, category, photo, description, salary, deadline, applicants};
+        console.log(newJob)
+
+
+        fetch('http://localhost:5000/jobs',{
+            method: 'POST',
+            headers:{
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newJob)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data);
+            if(data.insertedId)
+            {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Congratulation',
+                    text: 'Job Posted Successfully',
+                    
+                  })
+            }
+        })
     }
     return (
         <div>
             <NavBar></NavBar>
             <UserProfileNavbar></UserProfileNavbar>
+            <h1 className="text-4xl mt-5 text-center font-semibold">Add a Job</h1>
             <div className="max-w-7xl mx-auto">
                 <form onSubmit={handleAddJob}>
+                    <div className="md:flex gap-3">
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text">Job Poster</span>
+                            </label>
+                            <label className="input-group">
+                                <input type="text" defaultValue={user.displayName} className="input input-bordered w-full" name="" />
+                            </label>
+                        </div>
+
+                    </div>
                     <div className="md:flex gap-3">
                         <div className="form-control md:w-1/2">
                             <label className="label">
@@ -27,7 +76,7 @@ const AddJob = () => {
                                 <span className="label-text">Job Category</span>
                             </label>
                             <label className="input-group">
-                                <input type="text" placeholder="Brand Name" className="input input-bordered w-full" name="bName" />
+                                <input type="text" placeholder="Job Category" className="input input-bordered w-full" name="jCategory" />
                             </label>
                         </div>
                     </div>
@@ -43,43 +92,44 @@ const AddJob = () => {
 
                     </div>
                     <div className="md:flex gap-3">
-                        <div className="form-control md:w-1/3">
-                            <label className="label">
-                                <span className="label-text">Type</span>
-                            </label>
-                            <label className="input-group">
-                                <input type="text" placeholder="Product Type" className="input input-bordered w-full" name="type" />
-                            </label>
-                        </div>
-                        <div className="form-control md:w-1/3">
-                            <label className="label">
-                                <span className="label-text">Price</span>
-                            </label>
-                            <label className="input-group">
-                                <input type="text" placeholder="Price" className="input input-bordered w-full" name="price" />
-                            </label>
-                        </div>
-                        <div className="form-control md:w-1/3">
-                            <label className="label">
-                                <span className="label-text">Rating</span>
-                            </label>
-                            <label className="input-group">
-                                <input type="text" placeholder="Rating" className="input input-bordered w-full" name="rating" />
-                            </label>
-                        </div>
-                    </div>
-                    <div className="md:flex gap-3">
                         <div className="form-control w-full">
                             <label className="label">
-                                <span className="label-text">Short Description</span>
+                                <span className="label-text">Job Description</span>
                             </label>
                             <label className="input-group">
                                 {/* <input type="text" placeholder="About Product" className="input input-bordered w-full" name="description" /> */}
-                                <textarea className="textarea w-full textarea-bordered h-24" placeholder="About Product" name="description"></textarea>
+                                <textarea className="textarea w-full textarea-bordered h-24" placeholder="About Job" name="description"></textarea>
                             </label>
                         </div>
 
                     </div>
+                    <div className="md:flex gap-3">
+                        <div className="form-control md:w-1/3">
+                            <label className="label">
+                                <span className="label-text">Salary Range</span>
+                            </label>
+                            <label className="input-group">
+                                <input type="text" placeholder="Salary Range" className="input input-bordered w-full" name="salary" />
+                            </label>
+                        </div>
+                        <div className="form-control md:w-1/3">
+                            <label className="label">
+                                <span className="label-text">Application Deadline</span>
+                            </label>
+                            <label className="input-group">
+                                <input type="date" placeholder="Application Deadline" className="input input-bordered w-full" name="deadline" />
+                            </label>
+                        </div>
+                        <div className="form-control md:w-1/3">
+                            <label className="label">
+                                <span className="label-text">Total Applicants</span>
+                            </label>
+                            <label className="input-group">
+                                <input type="text" defaultValue={0} className="input input-bordered w-full" name="applicants" />
+                            </label>
+                        </div>
+                    </div>
+
 
 
                     <div>
