@@ -16,7 +16,7 @@ const AllJob = () => {
                 setShowJobs(data)
             });
     }, [])
-    console.log(jobs.length)
+    //console.log(jobs.length)
     const handleSearch = e =>{
         e.preventDefault();
         const searchValue = e.target.job.value.toLowerCase();
