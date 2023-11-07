@@ -34,51 +34,51 @@ const NavBar = () => {
             All Jobs
         </NavLink>
         </li>
-        {
-            user&& <li className="mx-2"><NavLink
-            to="/addJob"
-            style={({ isActive, isPending, isTransitioning }) => {
-                return {
-                    fontWeight: isActive ? "bold" : "",
-                    color: isPending ? "red" : "",
-                    viewTransitionName: isTransitioning ? "slide" : "",
-                };
-            }}
-        >
-            Add a Job
-        </NavLink>
-        </li>
+        {/* {
+            user && <li className="mx-2"><NavLink
+                to="/addJob"
+                style={({ isActive, isPending, isTransitioning }) => {
+                    return {
+                        fontWeight: isActive ? "bold" : "",
+                        color: isPending ? "red" : "",
+                        viewTransitionName: isTransitioning ? "slide" : "",
+                    };
+                }}
+            >
+                Add a Job
+            </NavLink>
+            </li>
         }
         {
-            user&& <li className="mx-2"><NavLink
-            to="/appliedJob"
-            style={({ isActive, isPending, isTransitioning }) => {
-                return {
-                    fontWeight: isActive ? "bold" : "",
-                    color: isPending ? "red" : "",
-                    viewTransitionName: isTransitioning ? "slide" : "",
-                };
-            }}
-        >
-            Applied Jobs
-        </NavLink>
-        </li>
+            user && <li className="mx-2"><NavLink
+                to="/appliedJob"
+                style={({ isActive, isPending, isTransitioning }) => {
+                    return {
+                        fontWeight: isActive ? "bold" : "",
+                        color: isPending ? "red" : "",
+                        viewTransitionName: isTransitioning ? "slide" : "",
+                    };
+                }}
+            >
+                Applied Jobs
+            </NavLink>
+            </li>
         }
-       {
-        user &&  <li className="mx-2"><NavLink
-        to="/myJob"
-        style={({ isActive, isPending, isTransitioning }) => {
-            return {
-                fontWeight: isActive ? "bold" : "",
-                color: isPending ? "red" : "",
-                viewTransitionName: isTransitioning ? "slide" : "",
-            };
-        }}
-    >
-        My Job
-    </NavLink>
-    </li>
-       }
+        {
+            user && <li className="mx-2"><NavLink
+                to="/myJob"
+                style={({ isActive, isPending, isTransitioning }) => {
+                    return {
+                        fontWeight: isActive ? "bold" : "",
+                        color: isPending ? "red" : "",
+                        viewTransitionName: isTransitioning ? "slide" : "",
+                    };
+                }}
+            >
+                My Job
+            </NavLink>
+            </li>
+        } */}
 
     </>
     return (
@@ -106,22 +106,24 @@ const NavBar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <div className="mr-[2px]">
+                    <div className="hidden md:flex mr-[3px] ">
                         {
                             user?.displayName ? <p className="font-medium">{user.displayName}</p> : " "
                         }
                     </div>
-                    <div className="w-10 rounded-full mr-[2px]">
-                        {
-                            user?.photoURL ? <img className="h-10 w-10 rounded-full" src={`${user.photoURL}`} referrerPolicy="no-referrer" ></img> : <CgProfile className="text-3xl"></CgProfile>
-                        }
-                    </div>
+                    <Link to="/userProfile">
+                        <div className="w-10 rounded-full mr-[3px]">
+                            {
+                                user?.photoURL ? <img className="h-10 w-10 rounded-full" src={`${user.photoURL}`} referrerPolicy="no-referrer" ></img> : <CgProfile className="text-3xl"></CgProfile>
+                            }
+                        </div>
+                    </Link>
                     {
-                        user ? 
-                        <Link to="/"><button onClick={logOut} className="btn btn-outline btn-primary">Logout</button></Link> 
-                        :
+                        user ?
+                            <Link to="/"><button onClick={logOut} className="underline">Logout</button></Link>
+                            :
                             <Link to="/login">
-                                <button className="btn btn-outline btn-primary">LogIn</button>
+                                <button className="underline">LogIn</button>
                             </Link>
                     }
                 </div>

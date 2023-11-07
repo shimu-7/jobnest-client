@@ -5,6 +5,7 @@ import ErrorPage from "../pages/ErrorPage";
 import AllJob from "../pages/AllJob";
 import LogIn from "../pages/LogIn";
 import Register from "../pages/Register";
+import UserProfile from "../pages/UserProfile";
 
 
 const router = createBrowserRouter([
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
         {
           path: "/register",
           element: <Register></Register>
+        },
+        {
+          path: "/userProfile",
+          element: <UserProfile></UserProfile>
         }
       ]
     },
