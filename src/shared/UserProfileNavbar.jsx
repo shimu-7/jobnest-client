@@ -81,7 +81,7 @@ const UserProfileNavbar = () => {
                 </div>
                 <div className=" w-1/2 navbar-end">
                     <Link to='/addJob'>
-                    <button className={` btn btn-outline `}>Post a Job</button>
+                    <button className={` btn btn-outline btn-secondary `}>Post a Job</button>
                     </Link>
 
                 </div>

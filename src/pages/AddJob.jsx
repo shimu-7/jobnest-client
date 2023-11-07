@@ -18,8 +18,11 @@ const AddJob = () => {
         const deadline = e.target.deadline.value;
         const applicants = e.target.applicants.value;
         const poster= user.displayName;
+        const email= user.email;
+        const pDate = e.target.pDate.value;
 
-        const newJob = {poster, title, category, photo, description, salary, deadline, applicants};
+
+        const newJob = {poster,email, title, category, photo, description, salary, deadline, applicants,pDate};
         console.log(newJob)
 
 
@@ -104,7 +107,7 @@ const AddJob = () => {
 
                     </div>
                     <div className="md:flex gap-3">
-                        <div className="form-control md:w-1/3">
+                        <div className="form-control md:w-1/4">
                             <label className="label">
                                 <span className="label-text">Salary Range</span>
                             </label>
@@ -112,7 +115,15 @@ const AddJob = () => {
                                 <input type="text" placeholder="Salary Range" className="input input-bordered w-full" name="salary" />
                             </label>
                         </div>
-                        <div className="form-control md:w-1/3">
+                        <div className="form-control md:w-1/4">
+                            <label className="label">
+                                <span className="label-text">Posting Date</span>
+                            </label>
+                            <label className="input-group">
+                                <input type="date" defaultValue={Date.now()} className="input input-bordered w-full" name="pDate" />
+                            </label>
+                        </div>
+                        <div className="form-control md:w-1/4">
                             <label className="label">
                                 <span className="label-text">Application Deadline</span>
                             </label>
@@ -120,7 +131,7 @@ const AddJob = () => {
                                 <input type="date" placeholder="Application Deadline" className="input input-bordered w-full" name="deadline" />
                             </label>
                         </div>
-                        <div className="form-control md:w-1/3">
+                        <div className="form-control md:w-1/4">
                             <label className="label">
                                 <span className="label-text">Total Applicants</span>
                             </label>
