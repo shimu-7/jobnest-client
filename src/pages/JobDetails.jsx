@@ -2,14 +2,59 @@ import { Link, useLoaderData, useParams } from "react-router-dom";
 import NavBar from "../shared/NavBar";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const JobDetails = () => {
     const job = useLoaderData();
     const { user } = useContext(AuthContext);
-    // const job = jobs.find(job => job._id == id);
      const  {poster,email,_id, title, category, photo, description, salary, deadline, applicants,pDate} =job;
     console.log(job)
     const handleApply = () =>{
+        const aEmail = user.email;
+        const tDate = new Date();
+        const aDate = new Date(deadline)
+        console.log(tDate, deadline)
+        const appliedJob = {aEmail,}
+        if(aEmail===email){
+           return Swal.fire({
+                title: 'An error occurred !!!',
+                text: 'Not Eligible to apply to your own job',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            })
+        }
+        if(aDate<tDate){
+            return Swal.fire({
+                title: 'An error occurred !!!',
+                text: 'Application deadline expired',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            })
+        }
+        // else
+        // {
+        //     console.log('eligible')
+        // }
+
+        fetch('http://localhost:5000/applied', {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(selectedProduct)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.insertedId) {
+                    Swal.fire({
+                        title: 'Congratulation!!!',
+                        text: 'Product is Added to cart.',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    })
+                }
+            })
 
     }
     return (
