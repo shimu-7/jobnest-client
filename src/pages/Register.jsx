@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import Swal from "sweetalert2";
+import NavBar from "../shared/NavBar";
 
 
 const Register = () => {
@@ -69,6 +70,7 @@ const Register = () => {
     }
     return (
         <div>
+            <NavBar></NavBar>
             <div className="hero min-h-screen ">
 
                 <div className="hero-content flex-col">
@@ -107,7 +109,7 @@ const Register = () => {
                             <div className="form-control mt-6">
                                 <button className="btn bg-pink-700 text-white">Register</button>
                             </div>
-                            <p>Already have an account!!! Please <Link to="/login" className="text-red-700 font-medium">Login</Link></p>
+                            <p>Already have an account!!! Please <Link to="/login" className="text-red-700 font-medium">Sign in</Link></p>
                         </form>
                         {
                             regError && <p className="text-red-500 pl-2 pb-2">{regError}</p>

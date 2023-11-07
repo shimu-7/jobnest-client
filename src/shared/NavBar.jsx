@@ -112,7 +112,7 @@ const NavBar = () => {
                         }
                     </div>
                     
-                        <div className="w-10 rounded-full mr-[3px]">
+                        <div className="w-10 rounded-full mx-[4px]">
                             {
                                 user?.photoURL ? <Link to="/userProfile">
                                     <img className="h-10 w-10 rounded-full" src={`${user.photoURL}`} referrerPolicy="no-referrer" ></img>
@@ -121,10 +121,10 @@ const NavBar = () => {
                         </div>
                     {
                         user ?
-                            <Link to="/"><button onClick={logOut} className="underline">Logout</button></Link>
+                            <Link to="/"><button onClick={logOut} className="underline">Sign Out</button></Link>
                             :
                             <Link to="/login">
-                                <button className="underline">LogIn</button>
+                                <button className="underline">Sign in</button>
                             </Link>
                     }
                 </div>

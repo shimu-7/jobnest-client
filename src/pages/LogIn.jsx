@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
+import NavBar from "../shared/NavBar";
 
 
 const LogIn = () => {
@@ -64,7 +65,7 @@ const LogIn = () => {
     }
     return (
         <div>
-
+            <NavBar></NavBar>
 
             <div className="hero min-h-screen ">
 
@@ -90,7 +91,7 @@ const LogIn = () => {
                                 </label>
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn bg-pink-700 text-white border py-2 rounded-lg ">Login</button>
+                                <button className="btn bg-pink-700 text-white border py-2 rounded-lg ">Sign in</button>
                             </div>
                             <p className="text-center">or</p>
                             <button onClick={handleGoogleLogIn} className="btn-outline  border py-2 rounded-lg"> <Link to="/">Continue with <span className="font-bold text-xl">Google</span></Link></button>
