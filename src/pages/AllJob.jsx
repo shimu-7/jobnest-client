@@ -13,17 +13,18 @@ const AllJob = () => {
         fetch('http://localhost:5000/jobs')
             .then(res => res.json())
             .then(data => {setJobs(data);
-                setShowJobs(jobs)
+                setShowJobs(data)
             });
     }, [])
-    
+    console.log(jobs.length)
     const handleSearch = e =>{
         e.preventDefault();
         const searchValue = e.target.job.value.toLowerCase();
         console.log(searchValue);
         const searchedJob= jobs.filter(job=>job.title.toLowerCase().includes(searchValue));
         console.log(searchedJob);
-        setShowJobs(searchedJob)
+        setShowJobs(jobs);   
+        setShowJobs(searchedJob);   
     }
 
     return (

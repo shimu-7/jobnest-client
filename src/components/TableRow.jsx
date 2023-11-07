@@ -1,7 +1,8 @@
 import { PropTypes } from "prop-types";
+import { Link } from "react-router-dom";
 
 const TableRow = ({job}) => {
-    const  {poster,email, title, category, photo, description, salary, deadline, applicants,pDate} =job;
+    const  {poster,email,_id, title, category, photo, description, salary, deadline, applicants,pDate} =job;
     return (
         
             <tr>
@@ -12,7 +13,7 @@ const TableRow = ({job}) => {
                 <td>{applicants}</td>
                 <td>{salary}</td>
                 <td>
-                    <button className="btn btn-outline btn-secondary">Views Details</button>
+                    <Link className="w-full" to={`/jobDetails/${_id}`}><button className="btn btn-outline btn-secondary">Views Details</button></Link>
                 </td>
             </tr>
             
