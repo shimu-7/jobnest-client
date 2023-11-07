@@ -1,20 +1,17 @@
+import { motion, useScroll } from "framer-motion"
 import NavBar from "../shared/NavBar";
 import UserProfileNavbar from "../shared/UserProfileNavbar";
-import { motion, useScroll } from "framer-motion"
 import './Blogs.css'
-import ProgressBar from "../shared/ProgressBar";
 const Blogs = () => {
     const { scrollYProgress } = useScroll();
+    console.log(scrollYProgress);
+
     return (
         <>
-        {/* <motion.div
-        className="progress-bar"
-        style={{ scaleX: scrollYProgress }}
-      /> */}
-      <ProgressBar></ProgressBar>
+            
             <NavBar></NavBar>
             <UserProfileNavbar></UserProfileNavbar>
-            <div className="progress-bar h-10"></div>
+            <motion.div className="progress-bar" style={{ scaleX: scrollYProgress}} />  
             <div className="max-w-7xl mx-auto border">
 
                 <div className="py-3 px-5">
@@ -64,7 +61,7 @@ const Blogs = () => {
                 </div>
 
             </div>
-        
+
         </>
     );
 };

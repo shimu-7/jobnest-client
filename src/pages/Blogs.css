@@ -1,12 +1,18 @@
 
 
 .progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100px;
-    background: var(--blue);
-    /* transform-origin: 0%; */
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: blue;
+}
+
+/* Progress indicator (moving element) */
+.progress-indicator {
+  height: 100%;
+  background-color: #28a745; /* Indicator color */
+  transition: width 0.3s; /* Add a smooth transition effect */
+}
   
