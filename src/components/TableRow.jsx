@@ -9,6 +9,7 @@ const TableRow = ({job}) => {
                 <td>{title}</td>
                 <td>{pDate}</td>
                 <td>{deadline}</td>
+                <td>{applicants}</td>
                 <td>{salary}</td>
                 <td>
                     <button className="btn btn-outline btn-secondary">Views Details</button>
