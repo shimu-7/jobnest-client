@@ -6,6 +6,8 @@ import AllJob from "../pages/AllJob";
 import LogIn from "../pages/LogIn";
 import Register from "../pages/Register";
 import UserProfile from "../pages/UserProfile";
+import PrivateRoute from "../providers/PrivateRoute";
+import Blogs from "../pages/Blogs";
 
 
 const router = createBrowserRouter([
@@ -32,7 +34,11 @@ const router = createBrowserRouter([
         },
         {
           path: "/userProfile",
-          element: <UserProfile></UserProfile>
+          element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute>
+        },
+        {
+          path: "/blogs",
+          element: <PrivateRoute><Blogs></Blogs></PrivateRoute>
         }
       ]
     },

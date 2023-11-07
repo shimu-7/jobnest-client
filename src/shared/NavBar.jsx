@@ -111,13 +111,14 @@ const NavBar = () => {
                             user?.displayName ? <p className="font-medium">{user.displayName}</p> : " "
                         }
                     </div>
-                    <Link to="/userProfile">
+                    
                         <div className="w-10 rounded-full mr-[3px]">
                             {
-                                user?.photoURL ? <img className="h-10 w-10 rounded-full" src={`${user.photoURL}`} referrerPolicy="no-referrer" ></img> : <CgProfile className="text-3xl"></CgProfile>
+                                user?.photoURL ? <Link to="/userProfile">
+                                    <img className="h-10 w-10 rounded-full" src={`${user.photoURL}`} referrerPolicy="no-referrer" ></img>
+                                </Link> : <CgProfile className="text-3xl"></CgProfile>
                             }
                         </div>
-                    </Link>
                     {
                         user ?
                             <Link to="/"><button onClick={logOut} className="underline">Logout</button></Link>

@@ -9,7 +9,7 @@ const UserProfileBody = () => {
         <div className="border">
             <div className="flex flex-col md:flex-row p-5">
                 <div className="md:w-1/3">
-                    <img src={user.photoURL} alt="" />
+                    <img src={user?.photoURL} alt="" />
                     <div>
                         <h2 className="text-xl font-bold">Skills</h2>
                         <h3>HTML</h3>
@@ -37,13 +37,13 @@ const UserProfileBody = () => {
                                 {/* row 1 */}
                                 <tr>
                                     <th>Name</th>
-                                    <td>{user.displayName}</td>
+                                    <td>{user?.displayName}</td>
 
                                 </tr>
                                 {/* row 2 */}
                                 <tr>
                                     <th>Email</th>
-                                    <td>{user.email}</td>
+                                    <td>{user?.email}</td>
 
                                 </tr>
                                 {/* row 3 */}
