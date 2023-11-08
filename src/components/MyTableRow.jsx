@@ -48,7 +48,7 @@ const MyTableRow = ({ job, setMyJobs, myJobs }) => {
             <td>{salary}</td>
             <td>{category}</td>
             <td>
-                <Link className="w-full mr-5" to={`/jobDetails/${_id}`}><button className="btn btn-outline btn-secondary">Update</button></Link>
+                <Link className="w-full mr-5" to={`/updateJob/${_id}`}><button className="btn btn-outline btn-secondary">Update</button></Link>
                 <Link className="w-full" onClick={() => handleDelete(_id)}><button className="btn btn-outline btn-secondary">Delete</button></Link>
             </td>
         </tr>
