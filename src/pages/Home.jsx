@@ -7,6 +7,7 @@ import Section2 from "../components/Section2";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import HomeJob from "../components/HomeJob";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -44,6 +45,9 @@ const Home = () => {
     }
     return (
         <div>
+            <Helmet>
+                <title>JobNest-Home</title>
+            </Helmet>
             <NavBar></NavBar>
             <div className="hero h-[400px] md:h-96" style={{ backgroundImage: 'url(https://img.freepik.com/free-photo/laptop-eyeglasses-mouse-diary-pen-pot-plant-black-background_23-2148042031.jpg?size=626&ext=jpg&ga=GA1.1.450165047.1695670968&semt=ais)' }}>
                 {/* <div className="hero-overlay "></div> */}

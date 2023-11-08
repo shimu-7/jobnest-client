@@ -3,6 +3,7 @@ import NavBar from "../shared/NavBar";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 
 const JobDetails = () => {
@@ -73,6 +74,10 @@ const JobDetails = () => {
     }
     return (
         <div>
+            <Helmet>
+                <title>JobNest-Job Details
+                </title>
+            </Helmet>
             <NavBar></NavBar>
             <div className="card bg-base-100 shadow-xl my-10">
                 <figure><img src={photo} alt="Shoes" /></figure>

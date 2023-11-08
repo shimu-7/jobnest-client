@@ -4,6 +4,7 @@ import UserProfileNavbar from "../shared/UserProfileNavbar";
 import { AuthContext } from "../providers/AuthProvider";
 import { useLoaderData } from "react-router-dom";
 import MyTableRow from "../components/MyTableRow";
+import { Helmet } from "react-helmet-async";
 
 
 const MyJobs = () => {
@@ -15,6 +16,9 @@ const MyJobs = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>JobNest-My Jobs</title>
+            </Helmet>
             <NavBar></NavBar>
             <UserProfileNavbar></UserProfileNavbar>
             <div className="max-w-7xl mx-auto">

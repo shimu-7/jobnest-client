@@ -3,6 +3,7 @@ import NavBar from "../shared/NavBar";
 import UserProfileNavbar from "../shared/UserProfileNavbar";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -49,6 +50,9 @@ const AddJob = () => {
     }
     return (
         <div>
+            <Helmet>
+                <title>JobNest-Add Job</title>
+            </Helmet>
             <NavBar></NavBar>
             <UserProfileNavbar></UserProfileNavbar>
             <h1 className="text-4xl mt-5 text-center font-semibold">Add a Job</h1>

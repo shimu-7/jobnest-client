@@ -4,6 +4,7 @@ import { AuthContext } from "../providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import Swal from "sweetalert2";
 import NavBar from "../shared/NavBar";
+import { Helmet } from "react-helmet-async";
 
 
 const Register = () => {
@@ -70,6 +71,9 @@ const Register = () => {
     }
     return (
         <div>
+            <Helmet>
+                <title>JobNest-Register</title>
+            </Helmet>
             <NavBar></NavBar>
             <div className="hero min-h-screen ">
 

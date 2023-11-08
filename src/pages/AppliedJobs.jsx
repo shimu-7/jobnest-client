@@ -4,6 +4,7 @@ import { AuthContext } from "../providers/AuthProvider";
 import { useLoaderData } from "react-router-dom";
 import UserProfileNavbar from "../shared/UserProfileNavbar";
 import AppliedJob from "../components/AppliedJob";
+import { Helmet } from "react-helmet-async";
 
 
 const AppliedJobs = () => {
@@ -37,6 +38,9 @@ const AppliedJobs = () => {
     }
     return (
         <div>
+            <Helmet>
+                <title>JobNest-Applied Job</title>
+            </Helmet>
             <NavBar></NavBar>
             <UserProfileNavbar></UserProfileNavbar>
 

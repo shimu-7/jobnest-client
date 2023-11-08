@@ -4,32 +4,36 @@ import { motion, useScroll } from "framer-motion"
 import './Blogs.css'
 import { useEffect, useState } from "react";
 import TableRow from "../components/TableRow";
+import { Helmet } from "react-helmet-async";
 
 const AllJob = () => {
     const { scrollYProgress } = useScroll();
     const [jobs, setJobs] = useState([]);
-    const [showJobs,setShowJobs] =useState([]);
+    const [showJobs, setShowJobs] = useState([]);
     useEffect(() => {
         fetch('http://localhost:5000/jobs')
             .then(res => res.json())
-            .then(data => {setJobs(data);
+            .then(data => {
+                setJobs(data);
                 setShowJobs(data)
             });
     }, [])
     //console.log(jobs.length)
-    const handleSearch = e =>{
+    const handleSearch = e => {
         e.preventDefault();
         const searchValue = e.target.job.value.toLowerCase();
         console.log(searchValue);
-        const searchedJob= jobs.filter(job=>job.title.toLowerCase().includes(searchValue));
+        const searchedJob = jobs.filter(job => job.title.toLowerCase().includes(searchValue));
         console.log(searchedJob);
-        setShowJobs(jobs);   
-        setShowJobs(searchedJob);   
+        setShowJobs(jobs);
+        setShowJobs(searchedJob);
     }
 
     return (
         <div>
-
+            <Helmet>
+                <title>JobNest-All Job</title>
+            </Helmet>
             <NavBar></NavBar>
             <motion.div className="progress-bar" style={{ scaleX: scrollYProgress, height: '5px' }} />
             <div className="max-w-7xl mt-5 mx-auto">

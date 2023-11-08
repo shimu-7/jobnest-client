@@ -2,13 +2,16 @@ import { motion, useScroll } from "framer-motion"
 import NavBar from "../shared/NavBar";
 import UserProfileNavbar from "../shared/UserProfileNavbar";
 import './Blogs.css'
+import { Helmet } from "react-helmet-async";
 const Blogs = () => {
     const { scrollYProgress } = useScroll();
     console.log(scrollYProgress);
 
     return (
         <>
-            
+            <Helmet>
+                <title>JobNest-Blogs</title>
+            </Helmet>
             <NavBar></NavBar>
             <UserProfileNavbar></UserProfileNavbar>
             <motion.div className="progress-bar" style={{ scaleX: scrollYProgress}} />  

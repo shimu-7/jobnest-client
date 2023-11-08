@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
 import NavBar from "../shared/NavBar";
+import { Helmet } from "react-helmet-async";
 
 
 const LogIn = () => {
@@ -65,6 +66,9 @@ const LogIn = () => {
     }
     return (
         <div>
+            <Helmet>
+                <title>JobNest-Sign in</title>
+            </Helmet>
             <NavBar></NavBar>
 
             <div className="hero min-h-screen ">
