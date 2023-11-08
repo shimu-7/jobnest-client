@@ -27,7 +27,7 @@ const LogIn = () => {
             .then(result => {
                 console.log(result.user);
                 Swal.fire({
-                    
+
                     icon: 'success',
                     imageUrl: result.user.photoURL,
                     imageWidth: 100,
@@ -49,12 +49,14 @@ const LogIn = () => {
         googleSignIn()
             .then(result => {
                 console.log(result.user);
+               
                 Swal.fire({
                     icon: 'success',
                     title: 'Great',
                     text: 'User Logged in successfully',
 
                 })
+                
                 setTimeout(() => {
                     navigate(location?.state ? location.state : '/')
                 }, 1000);

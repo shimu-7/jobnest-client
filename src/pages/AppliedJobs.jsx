@@ -1,39 +1,51 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import NavBar from "../shared/NavBar";
 import { AuthContext } from "../providers/AuthProvider";
 import { useLoaderData } from "react-router-dom";
 import UserProfileNavbar from "../shared/UserProfileNavbar";
 import AppliedJob from "../components/AppliedJob";
 import { Helmet } from "react-helmet-async";
+import axios from "axios";
 
 
 const AppliedJobs = () => {
     const { user } = useContext(AuthContext);
-    const appliedJobs = useLoaderData();
+    const [appliedJobs, setAppliedJobs] = useState([]);
+
     console.log(appliedJobs.length);
-    const jobs = appliedJobs.filter(job => job.aEmail === user.email);
-    console.log(jobs)
-    const [displayJobs, setDisplayJobs] = useState(jobs);
+    useEffect(() => {
+        axios.get(`http://localhost:5000/applied?email=${user?.email}`, {
+            withCredentials: true
+        })
+            .then(res => {
+                setAppliedJobs(res.data);
+                console.log('axios')
+            })
+    }, [])
+    // console.log(appliedJobs.length);
+    // const jobs = appliedJobs.filter(job => job.aEmail === user.email);
+    // console.log(jobs)
+    // const [displayJobs, setDisplayJobs] = useState(jobs);
     const handleJobsFilter = filter => {
 
         if (filter === 'All') {
-            setDisplayJobs(jobs);
+            setAppliedJobs(jobs);
         }
         else if (filter === 'Remote') {
             const remoteJobs = appliedJobs.filter(job => job.category === 'Remote');
-            setDisplayJobs(remoteJobs);
+            setAppliedJobs(remoteJobs);
         }
         else if (filter === 'On Site') {
             const remoteJobs = appliedJobs.filter(job => job.category === 'On Site');
-            setDisplayJobs(remoteJobs);
+            setAppliedJobs(remoteJobs);
         }
         else if (filter === 'Hybrid') {
             const remoteJobs = appliedJobs.filter(job => job.category === 'Hybrid');
-            setDisplayJobs(remoteJobs);
+            setAppliedJobs(remoteJobs);
         }
         else {
             const onsiteJobs = appliedJobs.filter(job => job.category === 'Part Time');
-            setDisplayJobs(onsiteJobs);
+            setAppliedJobs(onsiteJobs);
         }
     }
     return (
@@ -61,7 +73,7 @@ const AppliedJobs = () => {
 
                 <div className="grid gap-5">
                     {
-                        displayJobs.map(job => <AppliedJob key={job._id} job={job}></AppliedJob>)
+                        appliedJobs.map(job => <AppliedJob key={job._id} job={job}></AppliedJob>)
                     }
                 </div>
 
