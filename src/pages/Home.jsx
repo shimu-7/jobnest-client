@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import NavBar from "../shared/NavBar";
 import { Tab } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import Section1 from "../components/section1";
 import Section2 from "../components/Section2";
 import { useLoaderData } from "react-router-dom";
-import { AuthContext } from "../providers/AuthProvider";
+
 import HomeJob from "../components/HomeJob";
 import { Helmet } from "react-helmet-async";
 
@@ -14,11 +14,10 @@ import { Helmet } from "react-helmet-async";
 const Home = () => {
     const [categories, setCategories] = useState([])
     const [showJobs, setShowJobs] = useState([])
-    const { loading } = useContext(AuthContext)
     const allJobs = useLoaderData();
     const [flag, setFlag] = useState("");
     useEffect(() => {
-        fetch('http://localhost:5000/category')
+        fetch('https://job-seeking-server-eta.vercel.app/category')
             .then(res => res.json())
             .then(data => setCategories(data))
     }, [])

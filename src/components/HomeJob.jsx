@@ -2,7 +2,8 @@ import { PropTypes } from "prop-types";
 import { Link } from "react-router-dom";
 
 const HomeJob = ({job}) => {
-    const {poster,email,_id, title, category, photo, description, salary, deadline, applicants,pDate}= job
+   //const {poster,email,_id, title, category, photo, description, salary, deadline, applicants,pDate}= job
+    const {poster,_id, title, category, photo, salary}= job
     return (
         <div>
             {

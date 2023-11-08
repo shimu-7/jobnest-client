@@ -10,7 +10,7 @@ import { Helmet } from "react-helmet-async";
 const UpdateJob = () => {
     const job = useLoaderData();
     const { user } = useContext(AuthContext);
-    const { poster, email, _id, title, category, photo, description, salary, deadline, applicants, pDate } = job;
+    const { _id, title, category, photo, description, salary, deadline, applicants, pDate } = job;
     const handleUpdateJob = e => {
         e.preventDefault();
         const title = e.target.jTitle.value;
@@ -26,7 +26,7 @@ const UpdateJob = () => {
         const updatedJob = { poster, email, title, category, photo, description, salary, deadline, applicants, pDate };
         console.log(updatedJob);
 
-        fetch(`http://localhost:5000/jobs/${_id}`, {
+        fetch(`https://job-seeking-server-eta.vercel.app/jobs/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

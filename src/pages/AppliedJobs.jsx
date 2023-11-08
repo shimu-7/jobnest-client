@@ -1,20 +1,21 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import NavBar from "../shared/NavBar";
 import { AuthContext } from "../providers/AuthProvider";
-import { useLoaderData } from "react-router-dom";
 import UserProfileNavbar from "../shared/UserProfileNavbar";
 import AppliedJob from "../components/AppliedJob";
 import { Helmet } from "react-helmet-async";
 import axios from "axios";
+import generatePDF from "react-to-pdf";
 
 
 const AppliedJobs = () => {
     const { user } = useContext(AuthContext);
+    const targetRef = useRef();
     const [appliedJobs, setAppliedJobs] = useState([]);
+    const [displayJobs, setDisplayJobs] = useState([]);
 
-    console.log(appliedJobs.length);
     useEffect(() => {
-        axios.get(`http://localhost:5000/applied?email=${user?.email}`, {
+        axios.get(`https://job-seeking-server-eta.vercel.app/applied?email=${user?.email}`, {
             withCredentials: true
         })
             .then(res => {
@@ -22,30 +23,32 @@ const AppliedJobs = () => {
                 console.log('axios')
             })
     }, [])
-    // console.log(appliedJobs.length);
-    // const jobs = appliedJobs.filter(job => job.aEmail === user.email);
-    // console.log(jobs)
-    // const [displayJobs, setDisplayJobs] = useState(jobs);
+
+    useEffect(() => {
+        const jobs = appliedJobs.filter(job => job.aEmail === user.email);
+        setDisplayJobs(jobs);
+    }, [appliedJobs,user.email])
+    console.log(displayJobs)
     const handleJobsFilter = filter => {
 
         if (filter === 'All') {
-            setAppliedJobs(jobs);
+            setDisplayJobs(appliedJobs);
         }
         else if (filter === 'Remote') {
             const remoteJobs = appliedJobs.filter(job => job.category === 'Remote');
-            setAppliedJobs(remoteJobs);
+            setDisplayJobs(remoteJobs);
         }
         else if (filter === 'On Site') {
             const remoteJobs = appliedJobs.filter(job => job.category === 'On Site');
-            setAppliedJobs(remoteJobs);
+            setDisplayJobs(remoteJobs);
         }
         else if (filter === 'Hybrid') {
             const remoteJobs = appliedJobs.filter(job => job.category === 'Hybrid');
-            setAppliedJobs(remoteJobs);
+            setDisplayJobs(remoteJobs);
         }
         else {
             const onsiteJobs = appliedJobs.filter(job => job.category === 'Part Time');
-            setAppliedJobs(onsiteJobs);
+            setDisplayJobs(onsiteJobs);
         }
     }
     return (
@@ -56,9 +59,11 @@ const AppliedJobs = () => {
             <NavBar></NavBar>
             <UserProfileNavbar></UserProfileNavbar>
 
-            <div className="max-w-7xl mt-5 mx-auto">
+            <div ref={targetRef} className="max-w-7xl mt-5 mx-auto">
                 <h2 className="text-3xl font-semibold text-center">My Applied Job List</h2>
-                <div className="flex justify-end">
+                <div className="flex justify-between">
+                    <button className="btn bg-pink-700 text-white" onClick={() => generatePDF(targetRef, { filename: 'page.pdf' })}>Download PDF</button>
+
                     <details className="dropdown mb-10">
                         <summary className="m-1 btn">filter by Category</summary>
                         <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
@@ -71,9 +76,9 @@ const AppliedJobs = () => {
                     </details>
                 </div>
 
-                <div className="grid gap-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     {
-                        appliedJobs.map(job => <AppliedJob key={job._id} job={job}></AppliedJob>)
+                        displayJobs.map(job => <AppliedJob key={job._id} job={job}></AppliedJob>)
                     }
                 </div>
 

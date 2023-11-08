@@ -1,7 +1,8 @@
 import { PropTypes } from "prop-types";
 
 const AppliedJob = ({job}) => {
-    const {aName, aEmail, poster, email, jobId, title, category, photo, description, salary, deadline, applicants:newApplicants, pDate}= job
+    //const {aName, aEmail, poster, email, jobId, title, category, photo, description, salary, deadline, applicants:newApplicants, pDate}= job
+    const {poster, title, category, photo, salary, deadline}= job
     return (
         <div>
             {
@@ -11,6 +12,7 @@ const AppliedJob = ({job}) => {
                   <h2 className="card-title">{title}</h2>
                   <p><span className="font-semibold">Posted by</span>: {poster}</p>
                   <p><span className="font-semibold">Category</span>: {category}</p>
+                  <p><span className="font-semibold">Application Deadline</span>: {deadline}</p>
                   <p><span className="font-semibold">Salary</span>: {salary}</p>
                   
                 </div>

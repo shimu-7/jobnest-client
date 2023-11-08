@@ -2,7 +2,8 @@ import { PropTypes } from "prop-types";
 import { Link } from "react-router-dom";
 
 const TableRow = ({job}) => {
-    const  {poster,email,_id, title, category, photo, description, salary, deadline, applicants,pDate} =job;
+    //const  {poster,email,_id, title, category, photo, description, salary, deadline, applicants,pDate} =job;
+    const  {poster,_id, title, salary, deadline, applicants,pDate} =job;
     return (
         
             <tr>

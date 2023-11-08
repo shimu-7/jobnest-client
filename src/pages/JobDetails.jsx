@@ -40,7 +40,7 @@ const JobDetails = () => {
         // {
         //     console.log('eligible')
         // }
-        fetch(`http://localhost:5000/jobs/${_id}`, {
+        fetch(`https://job-seeking-server-eta.vercel.app/jobs/${_id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
@@ -50,7 +50,7 @@ const JobDetails = () => {
             .then(res => res.json())
             .then(data => console.log(data))
 
-        fetch('http://localhost:5000/applied', {
+        fetch('https://job-seeking-server-eta.vercel.app/applied', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'

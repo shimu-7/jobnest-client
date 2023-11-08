@@ -24,7 +24,7 @@ const router = createBrowserRouter([
         {
             path: "/",
             element: <Home></Home>,
-            loader : ()=>fetch('http://localhost:5000/jobs')
+            loader : ()=>fetch('https://job-seeking-server-eta.vercel.app/jobs')
         },
         {
           path: "/allJob",
@@ -53,7 +53,7 @@ const router = createBrowserRouter([
         {
           path: "/jobDetails/:id",
           element: <PrivateRoute><JobDetails></JobDetails></PrivateRoute>,
-          loader: ({params})=>fetch(`http://localhost:5000/jobs/${params.id}`)
+          loader: ({params})=>fetch(`https://job-seeking-server-eta.vercel.app/jobs/${params.id}`)
         },
         {
           path: "/appliedJob",
@@ -63,12 +63,12 @@ const router = createBrowserRouter([
         {
           path: "/myJob",
           element:<PrivateRoute><MyJobs></MyJobs></PrivateRoute>,
-          loader: ()=>fetch('http://localhost:5000/jobs')
+          loader: ()=>fetch('https://job-seeking-server-eta.vercel.app/jobs')
         },
         {
           path: "/updateJob/:id",
           element: <PrivateRoute><UpdateJob></UpdateJob></PrivateRoute>,
-          loader: ({params})=>fetch(`http://localhost:5000/jobs/${params.id}`)
+          loader: ({params})=>fetch(`https://job-seeking-server-eta.vercel.app/jobs/${params.id}`)
         }
       ]
     },

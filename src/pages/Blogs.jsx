@@ -58,7 +58,9 @@ const Blogs = () => {
                             Explaining my code
                         </div>
                         <div className="">
-                            <p>hello</p>
+                            <p>
+                                I am working on creating a job finder site. Where any visitor can see all jobs. When a user logged in, then by clicking on his/her profile picture he/she can see his/her profile with a customized UserProfileNavbar with profile, blogs, applied job,my job and a button to post a new job. All off these routes in UserProfileNavbar are private Route. A logged in user will be able to post a job,modify job and delete job.
+                            </p>
                         </div>
                     </div>
                 </div>
