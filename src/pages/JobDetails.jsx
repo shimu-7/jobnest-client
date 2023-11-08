@@ -18,7 +18,6 @@ const JobDetails = () => {
         const aDate = new Date(deadline);
         const newApplicants = parseInt(applicants) + 1;
         console.log(tDate, deadline)
-        const appliedJob = { aName, aEmail, poster, email, jobId, title, category, photo, description, salary, deadline, applicants, pDate }
         if (aEmail === email) {
             return Swal.fire({
                 title: 'An error occurred !!!',
@@ -35,6 +34,7 @@ const JobDetails = () => {
                 confirmButtonText: 'OK'
             })
         }
+        const appliedJob = { aName, aEmail, poster, email, jobId, title, category, photo, description, salary, deadline, applicants:newApplicants, pDate }
         // else
         // {
         //     console.log('eligible')
