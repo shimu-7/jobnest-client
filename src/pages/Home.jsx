@@ -39,7 +39,7 @@ const Home = () => {
                     <h2 className="text-3xl text-center font-semibold mt-10 mb-5">Job Category</h2>
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
                         {
-                            categories.map(category => <Tab className="btn btn-outline px-5" key={category.id} 
+                            categories.map(category => <Tab className="btn btn-outline px-5" key={category._id} 
                              >
                                 {category.category}
                             </Tab>)
