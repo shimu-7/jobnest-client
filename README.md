@@ -10,7 +10,7 @@
 
 **Live Link**
 ---
- https://job-seeker-7875d.web.app
+https://fancy-frangollo-0163ad.netlify.app/
 
 
 
